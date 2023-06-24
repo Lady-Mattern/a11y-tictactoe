@@ -89,3 +89,5 @@ I'm slower now as I have not touched React in a hot minute while working at CVS
 I would love to spend more time styling
 
 Been debating about putting the game board in a table element instead of list for screen reader users
+
+Would also love to re-organize the folder structure. My visually impaired self hates having the files all strung out here, but wanted to keep things simple for now
