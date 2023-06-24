@@ -74,3 +74,18 @@ const checkTie = board => {
     return false
   return !board.includes("")
 }
+
+
+## Tools used
+
+Create React App
+HTML
+CSS
+
+## Things I would change
+
+I'm slower now as I have not touched React in a hot minute while working at CVS
+
+I would love to spend more time styling
+
+Been debating about putting the game board in a table element instead of list for screen reader users
