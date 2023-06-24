@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Accessible Tic-Tac-Toe Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create an accessible two-player tic-tac-toe game using React.
 
-## Available Scripts
+## Requirements
+3x3 grid of buttons that allow two humans to alternate turns playing tic-tac-toe.
+Rules of Tic-Tac-Toe
+The computer calculates when a game is won or tied and announces the outcome.
+Two functions are provided to calculate win or tie state (courtesy of ChatGPT)
+Allow the players to customize their display names.
+Option to let “X” or “O” start first.
+Option to start over when the game is complete.
+Must be keyboard navigable
+Must pass WCAG 2.1 AA automated test with no reported issues (axe-core or other)
+Can use create-react-app or another build template of your choice.
 
-In the project directory, you can run:
+Time Box
+Don't go beyond 2 hours just to complete this assignment. We'd rather see progress and explanation than a completely working end product.
+Spend 90 minutes to build this project. Logic is provided for calculating wins and ties. 
+An additional 30 minutes should be spent documenting your findings and recommendations.
 
-### `yarn start`
+Deliverables
+Code package or github repository link: 
+Contains build scripts, src folder, package.json, etc.
+Optional: Link to live demo (Vercel or other)
+Document: 
+Detail the decisions made during the development process. 
+Include examples of findings during testing and any corrections you needed to make.
+Recommendations for further improvements you’d like to make.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+Sample Code
+Below you’ll find some sample code for calculating wins and ties based on a board array.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+/**
+* board is an array of 9 string values:
+* Players 'x' and 'o', with empty positions as empty string ''
+* [
+* 'x', 'o', 'x',
+* 'o', '',  'x',
+* 'x', '',  'o'
+* ]
+*/
+const checkWinner = board => {
+  const lines = [
+    // Board array is indexed such that top left is 0, bottom right is 8
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    // Horizontal lines
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    // Vertical lines
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    // Diagonal lines
+    [0, 4, 8], [2, 4, 6]
+  ]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  for (const line of lines) {
+    const [a, b, c] = line
+    if (board[a] === board[b] && board[b] === board[c] && board[a] !== " ") {
+      return board[a] // Return the winning player string ('x' or 'o')
+    }
+  }
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  return null // Return null if there is no winner yet
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const checkTie = board => {
+  // If no winners and no empty spaces on the board, return true
+  if (checkWinner(board))
+    return false
+  return !board.includes("")
+}
