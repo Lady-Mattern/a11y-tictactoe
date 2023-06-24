@@ -82,12 +82,22 @@ Create React App
 HTML
 CSS
 
-## Things I would change
+## Takeaways and Things I would change
 
-I'm slower now as I have not touched React in a hot minute while working at CVS
+1. I'm slower now as I have not touched React in a hot minute while working at CVS
 
-I would love to spend more time styling
+2. I would love to spend more time styling
 
-Been debating about putting the game board in a table element instead of list for screen reader users
+3. Been debating about putting the game board in a table element instead of list for screen reader users
 
-Would also love to re-organize the folder structure. My visually impaired self hates having the files all strung out here, but wanted to keep things simple for now
+4. Would also love to re-organize the folder structure. My visually impaired self hates having the files all strung out here, but wanted to keep things simple for now
+
+5. Need to add more of the game logic for tie conditions
+
+6. Would next need to create aria live region to announce winner to users of screen readers
+
+7. Would like to announce the winning conditions in text on screen
+
+8. Next add logic to give users the chance to play new game
+
+9. Add text visually and in audio as well to help users understand both how to play and who's turn it is next
